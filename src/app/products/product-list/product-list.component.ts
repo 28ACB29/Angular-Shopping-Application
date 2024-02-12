@@ -19,4 +19,9 @@ export class ProductListComponent implements AfterViewInit
       console.log(this.productDetail.name);
     }
   }
+
+  onBuy()
+  {
+    window.alert(`You just bought ${this.selectedProduct}!`);
+  }
 }
