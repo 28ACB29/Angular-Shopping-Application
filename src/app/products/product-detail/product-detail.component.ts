@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-product-detail',
@@ -6,10 +6,21 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './product-detail.component.html',
   styleUrl: './product-detail.component.css'
 })
-export class ProductDetailComponent
+export class ProductDetailComponent implements OnChanges
 {
   @Input() name = "";
   @Output() bought = new EventEmitter();
+
+  ngOnChanges(changes: SimpleChanges): void
+  {
+    const product = changes['name'];
+    if (!product.isFirstChange())
+    {
+      const oldValue = product.previousValue;
+      const newValue = product.currentValue;
+      console.log(`Product changed from ${oldValue} to ${newValue}`);
+    }
+  }
 
   buy()
   {
