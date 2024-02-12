@@ -18,7 +18,7 @@ export class ProductDetailComponent implements OnChanges
     {
       const oldValue = product.previousValue;
       const newValue = product.currentValue;
-      console.log(`Product changed from ${oldValue} to ${newValue}`);
+      console.log(`Product changed from ${oldValue} to ${newValue}`);
     }
   }
 
