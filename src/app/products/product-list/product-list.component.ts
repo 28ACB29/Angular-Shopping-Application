@@ -10,6 +10,7 @@ export class ProductListComponent implements AfterViewInit
 {
   selectedProduct = "";
   @ViewChild(ProductDetailComponent) productDetail: ProductDetailComponent | undefined;
+  products = ['Webcam', 'Microphone', 'Wireless keyboard'];
 
   ngAfterViewInit(): void
   {
