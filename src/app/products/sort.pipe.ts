@@ -7,9 +7,26 @@ import { Product } from './product';
 export class SortPipe implements PipeTransform
 {
 
-  transform(value: unknown, ...args: unknown[]): unknown
+  transform(value: Product[]): Product[]
   {
-    return null;
+    if (value)
+    {
+      return value.sort((a: Product, b: Product) =>
+      {
+        if (a.name < b.name)
+        {
+          return -1;
+        }
+        else if (b.name < a.name)
+        {
+          return 1;
+        }
+
+        return 0;
+      });
+    }
+
+    return [];
   }
 
 }
