@@ -15,7 +15,7 @@ export class ProductListComponent implements AfterViewInit, OnInit
   products: Product[] = [];
   private productsService: ProductsService;
 
-  constructor()
+  constructor(private productService: ProductsService)
   {
     this.productsService = new ProductsService();
   }
