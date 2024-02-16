@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ProductDetailComponent } from '../product-detail/product-detail.component';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
@@ -8,7 +8,7 @@ import { ProductsService } from '../products.service';
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
-export class ProductListComponent implements AfterViewInit
+export class ProductListComponent implements AfterViewInit, OnInit
 {
   selectedProduct: Product | undefined;
   @ViewChild(ProductDetailComponent) productDetail: ProductDetailComponent | undefined;
@@ -26,6 +26,11 @@ export class ProductListComponent implements AfterViewInit
     {
       console.log(this.productDetail.product);
     }
+  }
+
+  ngOnInit(): void
+  {
+    this.products = this.productsService.getProducts();
   }
 
   onBuy()
