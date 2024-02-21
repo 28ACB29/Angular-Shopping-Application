@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProductViewService } from './product-view.service';
 
 @Component({
   selector: 'app-product-view',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
 
 export class ProductViewComponent
 {
+
+  constructor()
+  {
+    
+  }
 
 }
