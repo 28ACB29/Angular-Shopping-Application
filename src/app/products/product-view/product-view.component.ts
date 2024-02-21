@@ -10,7 +10,7 @@ import { ProductViewService } from './product-view.service';
 export class ProductViewComponent
 {
 
-  constructor()
+  constructor(private productviewService: ProductViewService)
   {
     
   }
