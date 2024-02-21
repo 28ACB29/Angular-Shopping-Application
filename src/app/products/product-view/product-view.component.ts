@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProductViewService } from './product-view.service';
 
 @Component({
@@ -9,6 +9,10 @@ import { ProductViewService } from './product-view.service';
 
 export class ProductViewComponent
 {
+
+  @Input() id = -1;
+  name = '';
+
 
   constructor(private productviewService: ProductViewService)
   {
