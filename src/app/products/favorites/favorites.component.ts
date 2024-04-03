@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
 
@@ -11,7 +12,7 @@ import { ProductsService } from '../products.service';
 export class FavoritesComponent implements OnInit
 {
 
-  products: Product[] = [];
+  products$: Observable<Product[]> | undefined;
 
   constructor(private productService: ProductsService)
   {
@@ -20,7 +21,7 @@ export class FavoritesComponent implements OnInit
 
   ngOnInit(): void
   {
-    this.products = this.productService.getProducts();
+    this.products$ = this.productService.getProducts();
   }
 
 }
