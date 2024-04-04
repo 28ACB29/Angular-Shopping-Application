@@ -3,8 +3,6 @@ import { filter, fromEvent, map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-key-logger',
-  standalone: true,
-  imports: [],
   templateUrl: './key-logger.component.html',
   styleUrl: './key-logger.component.css'
 })
