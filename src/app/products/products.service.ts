@@ -6,6 +6,7 @@ import { Product } from './product';
 
 interface ProductDTO
 {
+  id: number;
   title: string;
   price:number;
 }
@@ -24,26 +25,20 @@ export class ProductsService
     
   }
 
-
-  products: Product[] =
-  [
-      {
-        name: 'Webcam',
-        price: 100
-      },
-      {
-        name:  'Microphone',
-        price: 200
-      },
-      {
-        name: 'Wireless keyboard',
-        price: 85
-      }
-  ];
+  private convertToProduct(product: ProductDTO): Product
+  {
+    return {
+      id: product.id,
+      name: product.title,
+      price: product.price};
+  }
 
   getProducts(): Observable<Product[]>
   {
-    return of(this.products);
+    return this.http.get<ProductDTO[]>(this.productsUrl).pipe(map(products => products.map(product =>
+    {
+      return this.convertToProduct(product);
+    })));
   }
 
 }
