@@ -19,7 +19,7 @@ export class ProductsService
 
   private productsUrl = 'https://fakestoreapi.com/products';
 
-  constructor()
+  constructor(private http: HttpClient)
   {
     
   }
