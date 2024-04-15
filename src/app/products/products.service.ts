@@ -4,12 +4,20 @@ import { map, Observable, of } from 'rxjs';
 
 import { Product } from './product';
 
+interface ProductDTO
+{
+  title: string;
+  price:number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProductsService
 {
+
+  private productsUrl = 'https://fakestoreapi.com/products';
 
   constructor()
   {
