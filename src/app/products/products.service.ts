@@ -33,6 +33,11 @@ export class ProductsService
       price: product.price};
   }
 
+  getProduct(id: number): Observable<Product>
+  {
+    return this.http.get<ProductDTO>(`${this.productsUrl}/${id}`).pipe(map(product => this.convertToProduct(product)));
+  }
+
   getProducts(): Observable<Product[]>
   {
     return this.http.get<ProductDTO[]>(this.productsUrl).pipe(map(products => products.map(product =>
