@@ -14,13 +14,12 @@ export class ProductListComponent implements AfterViewInit,  OnDestroy, OnInit
 {
   selectedProduct: Product | undefined;
   @ViewChild(ProductDetailComponent) productDetail: ProductDetailComponent | undefined;
-  products$: Observable<Product[]> | undefined;
-  private productsService: ProductsService;
+  products: Product[] = [];
   private productsSub: Subscription | undefined;
 
   constructor(private productService: ProductsService)
   {
-    this.productsService = new ProductsService();
+    ;
   }
 
   ngAfterViewInit(): void
@@ -48,6 +47,9 @@ export class ProductListComponent implements AfterViewInit,  OnDestroy, OnInit
 
   private getProducts()
   {
-    this.products$ = this.productService.getProducts();
+    this.productService.getProducts().subscribe(products =>
+      {
+        this.products = products;
+      });
   }
 }
