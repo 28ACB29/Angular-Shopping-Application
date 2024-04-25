@@ -55,6 +55,11 @@ export class ProductsService
     }).pipe(map(product => this.convertToProduct(product)));
   }
 
+  deleteProduct(id: number): Observable<void>
+  {
+    return this.http.delete<void>(`${this.productsUrl}/${id}`);
+  }
+
   updateProduct(id: number, price: number): Observable<void>
   {
     return this.http.patch<void>(`${this.productsUrl}/${id}`, { price });
