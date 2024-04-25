@@ -40,6 +40,11 @@ export class ProductListComponent implements AfterViewInit,  OnDestroy, OnInit
     this.getProducts();
   }
 
+  onAdd(product: Product)
+  {
+    this.products.push(product);
+  }
+
   onBuy()
   {
     window.alert(`You just bought ${this.selectedProduct?.name}!`);
@@ -48,8 +53,8 @@ export class ProductListComponent implements AfterViewInit,  OnDestroy, OnInit
   private getProducts()
   {
     this.productService.getProducts().subscribe(products =>
-      {
-        this.products = products;
-      });
+    {
+      this.products = products;
+    });
   }
 }
