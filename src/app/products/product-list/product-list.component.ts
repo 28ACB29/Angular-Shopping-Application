@@ -50,6 +50,12 @@ export class ProductListComponent implements AfterViewInit,  OnDestroy, OnInit
     window.alert(`You just bought ${this.selectedProduct?.name}!`);
   }
 
+  onDelete()
+  {
+    this.products = this.products.filter(product => product !== this.selectedProduct);
+    this.selectedProduct = undefined;
+  }
+
   private getProducts()
   {
     this.productService.getProducts().subscribe(products =>
