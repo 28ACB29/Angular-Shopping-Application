@@ -4,7 +4,7 @@
     <app-product-view [id]="i"></app-product-view>
   </li>
 </ul>
-<app-product-detail *ngIf="selectedProduct; else noProduct" [id]="selectedProduct.id" (bought)="onBuy()"></app-product-detail>
+<app-product-detail *ngIf="selectedProduct; else noProduct" [id]="selectedProduct.id" (bought)="onBuy()" (deleted)="onDelete()"></app-product-detail>
 <ng-template #noProduct>
   <p>No product selected!</p>
 </ng-template>
