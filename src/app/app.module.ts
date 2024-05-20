@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ProductsModule } from './products/products.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations:
@@ -12,6 +13,7 @@ import { ProductsModule } from './products/products.module';
   ],
   imports:
   [
+    AuthModule,
     BrowserModule,
     HttpClientModule,
     ProductsModule
