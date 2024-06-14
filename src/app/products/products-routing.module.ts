@@ -7,7 +7,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 const routes: Routes =
 [
   {
-    path: 'products', component: ProductListComponent
+    path: 'products',
+    component: ProductListComponent
   },
   {
     path: 'products/:id',
@@ -34,6 +35,7 @@ const routes: Routes =
     RouterModule
   ]
 })
+
 export class ProductsRoutingModule
 {
     
