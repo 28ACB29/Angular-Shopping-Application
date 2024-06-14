@@ -7,6 +7,7 @@ import { ProductCreateComponent } from './product-create/product-create.componen
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductViewComponent } from './product-view/product-view.component';
+import { ProductsRoutingModule } from './products-routing.module';
 import { SortPipe } from './sort.pipe';
 
 
@@ -23,7 +24,8 @@ import { SortPipe } from './sort.pipe';
   ],
   imports:
   [
-    CommonModule
+    CommonModule,
+    ProductsRoutingModule
   ],
   exports:
   [
