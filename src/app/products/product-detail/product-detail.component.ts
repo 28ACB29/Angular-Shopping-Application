@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, of, switchMap } from 'rxjs';
 
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
@@ -11,7 +12,7 @@ import { AuthService } from '../../auth/auth.service';
   styleUrl: './product-detail.component.css'
 })
 
-export class ProductDetailComponent implements OnChanges
+export class ProductDetailComponent implements OnInit, OnChanges
 {
   @Input() name = "";
   @Output() bought = new EventEmitter();
@@ -20,9 +21,15 @@ export class ProductDetailComponent implements OnChanges
   @Input() id = -1;
   product$: Observable<Product> | undefined;
 
-  constructor(private productService: ProductsService, public authService: AuthService)
+  constructor(private productService: ProductsService, public authService: AuthService, private route: ActivatedRoute)
   {
     
+  }
+
+  ngOnInit(): void
+  {
+    this.product$ = this.route.data.pipe(switchMap(data =>
+      of(data['product'])));
   }
 
   ngOnChanges(changes: SimpleChanges): void
