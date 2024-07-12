@@ -10,7 +10,6 @@ import { ProductViewComponent } from './product-view/product-view.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { SortPipe } from './sort.pipe';
 
-
 @NgModule({
   declarations:
   [
@@ -32,4 +31,8 @@ import { SortPipe } from './sort.pipe';
     ProductListComponent
   ]
 })
-export class ProductsModule { }
+
+export class ProductsModule
+{
+  
+}
