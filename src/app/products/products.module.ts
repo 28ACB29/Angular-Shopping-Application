@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 
 import { FavoritesComponent } from './favorites/favorites.component';
 import { KeyLoggerComponent } from '../key-logger/key-logger.component';
@@ -24,6 +25,7 @@ import { SortPipe } from './sort.pipe';
   imports:
   [
     CommonModule,
+    FormsModule,
     ProductsRoutingModule
   ],
   exports:
