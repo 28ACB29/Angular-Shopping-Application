@@ -26,6 +26,7 @@ import { SortPipe } from './sort.pipe';
   [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ProductsRoutingModule
   ],
   exports:
