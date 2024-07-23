@@ -20,6 +20,7 @@ export class ProductDetailComponent implements OnInit, OnChanges
   @Input() product: Product | undefined;
   @Input() id = -1;
   product$: Observable<Product> | undefined;
+  price: number | undefined;
 
   constructor(private productService: ProductsService, public authService: AuthService, private route: ActivatedRoute)
   {
