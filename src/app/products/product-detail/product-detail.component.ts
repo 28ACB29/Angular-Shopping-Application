@@ -2,9 +2,10 @@ import { Component, Input, EventEmitter, OnChanges, OnInit, Output, SimpleChange
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of, switchMap } from 'rxjs';
 
+import { AuthService } from '../../auth/auth.service';
+import { CartService } from '../../cart/cart.service';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
-import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -22,7 +23,7 @@ export class ProductDetailComponent implements OnInit, OnChanges
   product$: Observable<Product> | undefined;
   price: number | undefined;
 
-  constructor(private productService: ProductsService, public authService: AuthService, private route: ActivatedRoute)
+  constructor(private productService: ProductsService, public authService: AuthService, private route: ActivatedRoute, private cartService: CartService)
   {
     
   }
@@ -38,9 +39,9 @@ export class ProductDetailComponent implements OnInit, OnChanges
     this.product$ = this.productService.getProduct(this.id);
   }
 
-  buy()
+  buy(product: Product)
   {
-    this.bought.emit();
+    this.cartService.addProduct(product);
   }
 
   changePrice(product: Product, price: number)
