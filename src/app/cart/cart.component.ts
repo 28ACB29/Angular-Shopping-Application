@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
 import { CartService } from './cart.service';
@@ -10,7 +10,7 @@ import { Product } from '../products/product';
   styleUrl: './cart.component.css'
 })
 
-export class CartComponent
+export class CartComponent implements OnInit
 {
 
   cartForm = new FormGroup({
@@ -22,6 +22,19 @@ export class CartComponent
   {
     
   }
+
+  ngOnInit(): void
+  {
+    this.cart = this.cartService.cart;
+    this.cart.forEach(() =>
+    {
+      this.cartForm.controls.products.push(new FormControl(1,
+      {
+        nonNullable: true
+      }));
+    });
+  }
+
 
 
 
