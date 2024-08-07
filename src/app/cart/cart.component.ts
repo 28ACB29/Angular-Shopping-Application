@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 
+import { CartService } from './cart.service';
 import { Product } from '../products/product';
 
 @Component({
@@ -16,6 +17,12 @@ export class CartComponent
     products: new FormArray<FormControl<number>>([])
   });
   cart: Product[] = [];
+
+  constructor(private cartService: CartService)
+  {
+    
+  }
+
 
 
 }
