@@ -55,7 +55,7 @@ export class ProductCreateComponent implements OnInit
     });
   }
 
-  createProduct(name: string, price: number)
+  createProduct()
   {
     this.productsService.addProduct(this.name.value, Number(this.price.value)).subscribe(product =>
     {
