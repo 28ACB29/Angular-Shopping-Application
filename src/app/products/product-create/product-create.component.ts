@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { Observable } from 'rxjs';
+
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
 import { priceRangeValidator } from '../price-range.directive';
@@ -28,6 +30,9 @@ export class ProductCreateComponent implements OnInit
     })
   });
   showPriceRangeHint = false;
+  products: Product[] = [];
+  products$: Observable<Product[]> | undefined;
+  categories = ['Hardware', 'Computers', 'Clothing', 'Software'];
 
   get name()
   {
