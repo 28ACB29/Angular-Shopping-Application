@@ -4,10 +4,10 @@
   <span>{{product.price | currency:'EUR'}}</span>
   <form (ngSubmit)="changePrice(product, price!)">
     <input placeholder="New price" name="price" [(ngModel)]="price" />
-    <button type="submit">Change</button>
+    <button mat-raised-button type="submit">Change</button>
   </form>
   <p>
-    <button *ngIf="authService.isLoggedIn" (click)="buy(product)">Buy Now</button>
-    <button class="delete" (click)="remove(product)">Delete</button>
+    <button mat-button *ngIf="authService.isLoggedIn" (click)="buy(product)">Buy Now</button>
+    <button mat-raised-button class="delete" (click)="remove(product)">Delete</button>
   </p>
 </div>
