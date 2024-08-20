@@ -1,8 +1,12 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { Subscription, Observable } from 'rxjs';
-import { ProductDetailComponent } from '../product-detail/product-detail.component';
+
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
+import { ProductDetailComponent } from '../product-detail/product-detail.component';
 
 @Component({
   selector: 'app-product-list',
@@ -14,8 +18,11 @@ export class ProductListComponent implements AfterViewInit,  OnDestroy, OnInit
 {
   selectedProduct: Product | undefined;
   @ViewChild(ProductDetailComponent) productDetail: ProductDetailComponent | undefined;
-  products: Product[] = [];
+  products = new MatTableDataSource<Product>([]);
   private productsSub: Subscription | undefined;
+  columnNames = ['name', 'price'];
+  @ViewChild(MatSort) sort: MatSort | null = null;
+  @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
   constructor(private productService: ProductsService)
   {
@@ -42,7 +49,7 @@ export class ProductListComponent implements AfterViewInit,  OnDestroy, OnInit
 
   onAdd(product: Product)
   {
-    this.products.push(product);
+    this.products.data.push(product);
   }
 
   onBuy()
@@ -52,7 +59,7 @@ export class ProductListComponent implements AfterViewInit,  OnDestroy, OnInit
 
   onDelete()
   {
-    this.products = this.products.filter(product => product !== this.selectedProduct);
+    this.products.data = this.products.data.filter(product => product !== this.selectedProduct);
     this.selectedProduct = undefined;
   }
 
@@ -60,7 +67,9 @@ export class ProductListComponent implements AfterViewInit,  OnDestroy, OnInit
   {
     this.productService.getProducts().subscribe(products =>
     {
-      this.products = products;
+      this.products = new MatTableDataSource(products);
+      this.products.sort = this.sort;
+      this.products.paginator = this.paginator;
     });
   }
 }
