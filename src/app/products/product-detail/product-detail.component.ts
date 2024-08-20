@@ -1,9 +1,11 @@
 import { Component, Input, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of, switchMap } from 'rxjs';
+import { filter, Observable, of, switchMap } from 'rxjs';
 
 import { AuthService } from '../../auth/auth.service';
 import { CartService } from '../../cart/cart.service';
+import { PriceComponent } from '../price/price.component';
 import { Product } from '../product';
 import { ProductsService } from '../products.service';
 
@@ -23,7 +25,7 @@ export class ProductDetailComponent implements OnInit, OnChanges
   product$: Observable<Product> | undefined;
   price: number | undefined;
 
-  constructor(private productService: ProductsService, public authService: AuthService, private route: ActivatedRoute, private cartService: CartService)
+  constructor(private productService: ProductsService, public authService: AuthService, private route: ActivatedRoute, private cartService: CartService, private dialog: MatDialog)
   {
     
   }
@@ -46,7 +48,10 @@ export class ProductDetailComponent implements OnInit, OnChanges
 
   changePrice(product: Product, price: number)
   {
-    this.productService.updateProduct(product.id, price).subscribe(() =>
+    this.dialog.open(PriceComponent,
+    {
+      data: product.price
+    }).afterClosed().pipe(filter(price => !!price), switchMap(price => this.productService.updateProduct(product.id, price))).subscribe(() =>
     {
       alert(`The price of ${product.name} was changed!`);
     });
