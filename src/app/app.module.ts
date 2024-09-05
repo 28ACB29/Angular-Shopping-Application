@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { GoogleMapsModule } from '@angular/google-maps';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -14,6 +15,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { CartComponent } from './cart/cart.component';
+import { MapComponent } from './map/map.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProductsModule } from './products/products.module';
 
@@ -22,6 +24,7 @@ import { ProductsModule } from './products/products.module';
   [
     AppComponent,
     CartComponent,
+    MapComponent,
     PageNotFoundComponent
   ],
   imports:
@@ -30,6 +33,7 @@ import { ProductsModule } from './products/products.module';
     AuthModule,
     BrowserModule,
     CommonModule,
+    GoogleMapsModule,
     HttpClientModule,
     MatButtonModule,
     MatButtonToggleModule,
