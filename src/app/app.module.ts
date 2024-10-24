@@ -8,10 +8,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { AppErrorHandler } from './app-error-handler';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthModule } from './auth/auth.module';
 import { CartComponent } from './cart/cart.component';
@@ -44,7 +45,13 @@ import { ProductsModule } from './products/products.module';
     ProductsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers:
+  [
+    {
+      provide: ErrorHandler,
+      useClass: AppErrorHandler
+    }
+  ],
   bootstrap:
   [
     AppComponent
